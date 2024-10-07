@@ -6,6 +6,7 @@ import java.util.Objects;
  * Clase Persona
  */
 public class Persona {
+    private int id;
     private String nombre;
     private String apellidos;
     private int edad;
@@ -13,15 +14,22 @@ public class Persona {
     /**
      * Constructor con parámetros de persona
      *
+     * @param id id de persona
      * @param nombre nombre de persona
      * @param apellidos apellidos de persona
      * @param edad edad de persona
      */
-    public Persona(String nombre, String apellidos, int edad) {
+    public Persona(int id, String nombre, String apellidos, int edad) {
+        this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
     }
+
+    /**
+     * Constructor vacío
+     */
+    public Persona() {}
 
     /**
      * ToString de objeto persona
@@ -31,10 +39,29 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "nombre='" + nombre + '\'' +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", edad=" + edad +
                 '}';
+    }
+
+    /**
+     * Getter para el id de persona
+     *
+     * @return id de persona
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    /**
+     * Setter para el id de persona
+     *
+     * @param id nuevo id de persona
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

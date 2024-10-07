@@ -15,15 +15,10 @@ import com.alesandro.model.Persona;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Clase que controla los eventos de la ventana
@@ -271,73 +266,6 @@ public class PersonasController {
                 }
             }
             tabla.setItems(filteredData);
-        }
-    }
-
-    /**
-     * Función que carga un archivo csv para meterlo en la tabla
-     *
-     * @param event
-     */
-    @FXML
-    void importar(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Abrir un archivo csv");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.csv"));
-        fileChooser.setInitialDirectory(new File("."));
-        File fichero = fileChooser.showOpenDialog(tabla.getScene().getWindow());
-        if (fichero!=null && fichero.exists()) {
-            ArrayList<Persona> lista = CSVManager.cargar(fichero.getAbsolutePath());
-            if (lista != null) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.initOwner(tabla.getScene().getWindow());
-                alert.setHeaderText(null);
-                alert.setTitle("Importar");
-                alert.setContentText("¿Quieres sobreescribir la lista actual?");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    masterData.clear();
-                    tabla.getItems().clear();
-                    filteredData.clear();
-                    masterData.addAll(lista);
-                    tabla.getItems().addAll(lista);
-                } else {
-                    for (Persona p : lista) {
-                        if (!masterData.contains(p)) {
-                            masterData.add(p);
-                            tabla.getItems().add(p);
-                        }
-                    }
-                }
-                confirmacion("Cargado fichero csv correctamente");
-            } else {
-                alerta("Error cargando el fichero csv");
-            }
-        }
-    }
-
-    /**
-     * Función que exporta un archivo csv
-     *
-     * @param event
-     */
-    @FXML
-    void exportar(ActionEvent event) {
-        if (masterData.isEmpty()) {
-            alerta("La lista no puede estar vacía");
-        } else {
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            directoryChooser.setTitle("Selecciona carpeta donde guardar");
-            directoryChooser.setInitialDirectory(new File("."));
-            File fichero = directoryChooser.showDialog(tabla.getScene().getWindow());
-            if (fichero!=null && fichero.exists() && fichero.isDirectory()) {
-                boolean resultado = CSVManager.guardar(fichero.getAbsolutePath() + "/personas.csv", masterData);
-                if (resultado) {
-                    confirmacion("Guardado fichero csv correctamente");
-                } else {
-                    alerta("Error guardando el fichero csv");
-                }
-            }
         }
     }
 
