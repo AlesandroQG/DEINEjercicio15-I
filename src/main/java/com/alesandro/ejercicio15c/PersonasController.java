@@ -1,8 +1,6 @@
 package com.alesandro.ejercicio15c;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,9 +15,12 @@ import com.alesandro.model.Persona;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -53,6 +54,9 @@ public class PersonasController {
 
     private Stage modal;
 
+    private ObservableList<Persona> masterData = FXCollections.observableArrayList();
+    private ObservableList<Persona> filteredData = FXCollections.observableArrayList();
+
     /**
      * Función que se ejecuta cuando se inicia la ventana
      */
@@ -62,6 +66,8 @@ public class PersonasController {
         colApellidos.setCellValueFactory(new PropertyValueFactory("apellidos"));
         colEdad.setCellValueFactory(new PropertyValueFactory("edad"));
         tabla.getColumns().setAll(colNombre, colApellidos, colEdad);
+        // Filtrar
+        filtroNombre.setOnKeyTyped(keyEvent -> filtrar());
     }
 
     /**
@@ -130,6 +136,7 @@ public class PersonasController {
         gridPane.add(txtEdad, 1, 2, 1, 1);
         btnGuardar = new Button("Guardar");
         btnCancelar = new Button("Cancelar");
+        btnCancelar.setOnAction(event -> cancelar());
         FlowPane flowPane = new FlowPane(btnGuardar, btnCancelar);
         flowPane.setAlignment(Pos.CENTER);
         flowPane.setHgap(20);
@@ -150,7 +157,6 @@ public class PersonasController {
     void agregarPersona(ActionEvent event) {
         mostrarModal("Nueva Persona");
         btnGuardar.setOnAction(actionEvent -> agregar());
-        btnCancelar.setOnAction(actionEvent -> cancelar());
     }
 
     /**
@@ -160,11 +166,11 @@ public class PersonasController {
         boolean resultado = validarDatos();
         if (resultado) {
             Persona p = new Persona(txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtEdad.getText()));
-            ObservableList<Persona> lst = tabla.getItems();
-            if (lst.contains(p)) {
+            if (masterData.contains(p)) {
                 alerta("Esa persona ya existe");
             } else {
                 tabla.getItems().add(p);
+                masterData.add(p);
                 confirmacion("Persona añadida correctamente");
                 modal.close();
             }
@@ -199,8 +205,7 @@ public class PersonasController {
         boolean resultado = validarDatos();
         if (resultado) {
             Persona p2 = new Persona(txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtEdad.getText()));
-            ObservableList<Persona> lst = tabla.getItems();
-            if (lst.contains(p2)) {
+            if (masterData.contains(p2)) {
                 alerta("Esa persona ya existe");
             } else {
                 p.setNombre(txtNombre.getText());
@@ -224,6 +229,7 @@ public class PersonasController {
         if (tsm.isEmpty()) {
             alerta("Tienes que seleccionar una fila");
         } else {
+            Persona p = tsm.getSelectedItem();
             ObservableList<Integer> lst = tsm.getSelectedIndices();
             Integer[] indices = new Integer[lst.size()];
             indices = lst.toArray(indices);
@@ -232,6 +238,7 @@ public class PersonasController {
                 tsm.clearSelection(indices[i].intValue());
                 tabla.getItems().remove(indices[i].intValue());
             }
+            masterData.remove(p);
             confirmacion("Personas eliminadas correctamente");
         }
     }
@@ -243,14 +250,60 @@ public class PersonasController {
         modal.close();
     }
 
-    @FXML
-    void importar() {
-        //
+    /**
+     * Filtra la tabla
+     */
+    public void filtrar() {
+        String value = filtroNombre.getText();
+        value = value.toLowerCase();
+        if (value.isEmpty()) {
+            tabla.setItems(masterData);
+        } else {
+            filteredData.clear();
+            for (Persona p : masterData) {
+                String nombre = p.getNombre();
+                nombre = nombre.toLowerCase();
+                if (nombre.startsWith(value)) {
+                    filteredData.add(p);
+                }
+            }
+            tabla.setItems(filteredData);
+        }
     }
 
+    /**
+     * Función que carga un archivo csv para meterlo en la tabla
+     *
+     * @param event
+     */
     @FXML
-    void exportar() {
-        //
+    void importar(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir un archivo csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.csv"));
+        File fichero = fileChooser.showOpenDialog(tabla.getScene().getWindow());
+        if (fichero!=null && fichero.exists()) {
+            ArrayList<Persona> lista = CSVManager.cargar(fichero.getAbsolutePath());
+        }
+    }
+
+    /**
+     * Función que exporta un archivo csv
+     *
+     * @param event
+     */
+    @FXML
+    void exportar(ActionEvent event) {
+        if (masterData.isEmpty()) {
+            alerta("La lista no puede estar vacia");
+        } else {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Selecciona carpeta donde guardar");
+            File fichero = fileChooser.showSaveDialog(tabla.getScene().getWindow());
+            if (fichero!=null && fichero.exists() && fichero.isDirectory()) {
+                boolean resultado = CSVManager.guardar(fichero.getAbsolutePath() + "personas.csv", masterData);
+            }
+        }
     }
 
     /**
