@@ -169,6 +169,30 @@ public class PersonasController {
     }
 
     /**
+     * Función que procesa los datos cuándo se pulsa el botón "Modificar Persona"
+     *
+     * @param event
+     */
+    @FXML
+    void modificarPersona(ActionEvent event) {
+        mostrarModal("Modificar Persona");
+        btnGuardar.setOnAction(actionEvent -> agregar());
+        btnCancelar.setOnAction(actionEvent -> cancelar());
+    }
+
+    /**
+     * Función que procesa los datos cuándo se pulsa el botón "Eliminar Persona"
+     *
+     * @param event
+     */
+    @FXML
+    void eliminarPersona(ActionEvent event) {
+        mostrarModal("Nueva Persona");
+        btnGuardar.setOnAction(actionEvent -> agregar());
+        btnCancelar.setOnAction(actionEvent -> cancelar());
+    }
+
+    /**
      * Función que cierra la ventana modal
      */
     public void cancelar() {
