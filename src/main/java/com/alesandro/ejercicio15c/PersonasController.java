@@ -48,6 +48,9 @@ public class PersonasController {
     @FXML // fx:id="colEdad"
     private TableColumn<Persona, Integer> colEdad; // Value injected by FXMLLoader
 
+    @FXML // fx:id="filtroNombre"
+    private TextField filtroNombre; // Value injected by FXMLLoader
+
     private Stage modal;
 
     /**
@@ -238,6 +241,16 @@ public class PersonasController {
      */
     public void cancelar() {
         modal.close();
+    }
+
+    @FXML
+    void importar() {
+        //
+    }
+
+    @FXML
+    void exportar() {
+        //
     }
 
     /**
