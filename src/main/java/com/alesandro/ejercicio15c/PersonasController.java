@@ -175,9 +175,39 @@ public class PersonasController {
      */
     @FXML
     void modificarPersona(ActionEvent event) {
-        mostrarModal("Modificar Persona");
-        btnGuardar.setOnAction(actionEvent -> agregar());
-        btnCancelar.setOnAction(actionEvent -> cancelar());
+        TableViewSelectionModel<Persona> tsm = tabla.getSelectionModel();
+        if (tsm.isEmpty()) {
+            alerta("Tienes que seleccionar una fila");
+        } else {
+            Persona p = tsm.getSelectedItem();
+            mostrarModal("Modificar Persona");
+            btnGuardar.setOnAction(actionEvent -> modificar(p));
+            btnCancelar.setOnAction(actionEvent -> cancelar());
+            txtNombre.setText(p.getNombre());
+            txtApellidos.setText(p.getApellidos());
+            txtEdad.setText(p.getEdad() + "");
+        }
+    }
+
+    /**
+     * Función que modifica una persona de la lista
+     */
+    void modificar(Persona p) {
+        boolean resultado = validarDatos();
+        if (resultado) {
+            Persona p2 = new Persona(txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtEdad.getText()));
+            ObservableList<Persona> lst = tabla.getItems();
+            if (lst.contains(p2)) {
+                alerta("Esa persona ya existe");
+            } else {
+                p.setNombre(txtNombre.getText());
+                p.setApellidos(txtApellidos.getText());
+                p.setEdad(Integer.parseInt(txtEdad.getText()));
+                tabla.refresh();
+                confirmacion("Actualizada persona correctamente");
+                modal.close();
+            }
+        }
     }
 
     /**
@@ -187,9 +217,20 @@ public class PersonasController {
      */
     @FXML
     void eliminarPersona(ActionEvent event) {
-        mostrarModal("Nueva Persona");
-        btnGuardar.setOnAction(actionEvent -> agregar());
-        btnCancelar.setOnAction(actionEvent -> cancelar());
+        TableViewSelectionModel<Persona> tsm = tabla.getSelectionModel();
+        if (tsm.isEmpty()) {
+            alerta("Tienes que seleccionar una fila");
+        } else {
+            ObservableList<Integer> lst = tsm.getSelectedIndices();
+            Integer[] indices = new Integer[lst.size()];
+            indices = lst.toArray(indices);
+            Arrays.sort(indices);
+            for (int i = indices.length - 1; i >= 0; i--) {
+                tsm.clearSelection(indices[i].intValue());
+                tabla.getItems().remove(indices[i].intValue());
+            }
+            confirmacion("Personas eliminadas correctamente");
+        }
     }
 
     /**
