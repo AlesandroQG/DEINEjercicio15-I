@@ -284,6 +284,7 @@ public class PersonasController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Abrir un archivo csv");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.csv"));
+        fileChooser.setInitialDirectory(new File("."));
         File fichero = fileChooser.showOpenDialog(tabla.getScene().getWindow());
         if (fichero!=null && fichero.exists()) {
             ArrayList<Persona> lista = CSVManager.cargar(fichero.getAbsolutePath());
@@ -327,6 +328,7 @@ public class PersonasController {
         } else {
             DirectoryChooser directoryChooser = new DirectoryChooser();
             directoryChooser.setTitle("Selecciona carpeta donde guardar");
+            directoryChooser.setInitialDirectory(new File("."));
             File fichero = directoryChooser.showDialog(tabla.getScene().getWindow());
             if (fichero!=null && fichero.exists() && fichero.isDirectory()) {
                 boolean resultado = CSVManager.guardar(fichero.getAbsolutePath() + "/personas.csv", masterData);

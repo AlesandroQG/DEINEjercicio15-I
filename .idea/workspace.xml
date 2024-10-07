@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="96b619f7-74c5-457a-acd4-89439082e31f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15c/CSVManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15c/CSVManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15c/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15c/PersonasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +42,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PersonasApplication.executor": "Run",
+    "Maven.Ejercicio15-E [org.apache.maven.plugins:maven-javadoc-plugin:3.10.0:javadoc-no-fork].executor": "Run",
+    "Maven.Ejercicio15-E [org.apache.maven.plugins:maven-javadoc-plugin:3.10.0:javadoc].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
