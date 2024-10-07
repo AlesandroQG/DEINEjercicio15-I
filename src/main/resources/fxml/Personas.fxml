@@ -19,8 +19,15 @@
       <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#importar" text="Importar" />
-            <Button mnemonicParsing="false" onAction="#exportar" text="Exportar" />
+            <Button mnemonicParsing="false" onAction="#exportar" text="Exportar">
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Button>
          </children>
+         <FlowPane.margin>
+            <Insets left="270.0" />
+         </FlowPane.margin>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
          <children>

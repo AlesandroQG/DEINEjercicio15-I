@@ -25,7 +25,9 @@ public class CSVManager {
                 String[] partes = linea.split(",");
                 try {
                     Persona p = new Persona(partes[0], partes[1], Integer.parseInt(partes[2]));
-                    lista.add(p);
+                    if (!lista.contains(p)) {
+                        lista.add(p);
+                    }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
