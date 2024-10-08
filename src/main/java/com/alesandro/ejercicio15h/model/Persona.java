@@ -1,4 +1,4 @@
-package com.alesandro.model;
+package com.alesandro.ejercicio15h.model;
 
 import java.util.Objects;
 

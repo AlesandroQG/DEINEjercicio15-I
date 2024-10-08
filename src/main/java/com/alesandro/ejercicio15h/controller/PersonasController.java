@@ -1,4 +1,4 @@
-package com.alesandro.ejercicio15c;
+package com.alesandro.ejercicio15h.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import static javafx.scene.control.TableView.TableViewSelectionModel;
 
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.alesandro.model.Persona;
+import com.alesandro.ejercicio15h.model.Persona;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.FlowPane?>
 
-<FlowPane prefHeight="400.0" prefWidth="800.0" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alesandro.ejercicio15c.PersonasController">
+<FlowPane prefHeight="400.0" prefWidth="800.0" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alesandro.ejercicio15h.controller.PersonasController">
    <children>
       <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="300.0">
          <children>
