@@ -11,11 +11,11 @@ import java.sql.SQLException;
 
 public class DaoPersona {
     /**
-     * Metodo que carga los datos de la tabla DNI y los devuelve para usarlos en un listado de personas
+     * Metodo que carga los datos de la tabla Persona y los devuelve para usarlos en un listado de personas
      *
-     * @return listado de paises para cargar en un tableview
+     * @return listado de personas para cargar en un tableview
      */
-    public static ObservableList<Persona> cargarListadoDNI() {
+    public static ObservableList<Persona> cargarListado() {
         DBConnect conexion;
         ObservableList<Persona> listadoDePersonas= FXCollections.observableArrayList();
 
@@ -51,13 +51,13 @@ public class DaoPersona {
     }
 
     /**
-     * Metodo que modifica los datos de un dni  en la BD
+     * Metodo que modifica los datos de una persona en la BD
      *
      * @param p		Instancia de la persona con datos nuevos
-     * @param pNueva Nuevo dni de la persona a modificar
+     * @param pNueva Nuevos datos de la persona a modificar
      * @return			true/false
      */
-    public static boolean modificarPais(Persona p, Persona pNueva) {
+    public static boolean modificar(Persona p, Persona pNueva) {
         DBConnect conexion;
         PreparedStatement pstmt;
 
@@ -93,12 +93,12 @@ public class DaoPersona {
     }
 
     /**
-     * Metodo que CREA un nuevo un dni en la BD
+     * Metodo que CREA un nuevo una persona en la BD
      *
      * @param persona		Instancia del modelo persona con datos nuevos
      * @return			id/-1
      */
-    public  static int nuevoDNI(Persona persona) {
+    public  static int insertar(Persona persona) {
         DBConnect conexion;
         PreparedStatement pstmt;
 
@@ -144,7 +144,7 @@ public class DaoPersona {
      * @param personaAEliminar Persona a eliminar
      * @return a boolean
      */
-    public  static boolean eliminarPersona (Persona personaAEliminar){
+    public  static boolean eliminar(Persona personaAEliminar){
 
         DBConnect conexion;
         PreparedStatement pstmt;

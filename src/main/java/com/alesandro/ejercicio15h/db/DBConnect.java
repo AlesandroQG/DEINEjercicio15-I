@@ -20,8 +20,8 @@ public class DBConnect {
     public DBConnect() throws SQLException {
         // los parametros de la conexion
         Properties connConfig = new Properties();
-        connConfig.setProperty("user", "admin");
-        connConfig.setProperty("password", "password");
+        connConfig.setProperty("user", "root");
+        connConfig.setProperty("password", "mypass");
         //la conexion en sí
         connection = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:33066/personas?serverTimezone=Europe/Madrid", connConfig);
         connection.setAutoCommit(true);

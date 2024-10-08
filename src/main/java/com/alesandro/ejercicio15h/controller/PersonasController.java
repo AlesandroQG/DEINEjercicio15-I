@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 
+import com.alesandro.ejercicio15h.dao.DaoPersona;
+
 /**
  * Clase que controla los eventos de la ventana
  */
@@ -65,6 +67,10 @@ public class PersonasController {
         tabla.getColumns().setAll(colNombre, colApellidos, colEdad);
         // Filtrar
         filtroNombre.setOnKeyTyped(keyEvent -> filtrar());
+        // Cargar base de datos
+        ObservableList<Persona> lista = DaoPersona.cargarListado();
+        masterData.addAll(lista);
+        tabla.getItems().addAll(lista);
     }
 
     /**
@@ -163,14 +169,23 @@ public class PersonasController {
     public void agregar() {
         boolean resultado = validarDatos();
         if (resultado) {
-            Persona p = new Persona(txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtEdad.getText()));
+            Persona p = new Persona();
+            p.setNombre(txtNombre.getText());
+            p.setApellidos(txtApellidos.getText());
+            p.setEdad(Integer.parseInt(txtEdad.getText()));
             if (masterData.contains(p)) {
                 alerta("Esa persona ya existe");
             } else {
-                tabla.getItems().add(p);
-                masterData.add(p);
-                confirmacion("Persona añadida correctamente");
-                modal.close();
+                int id = DaoPersona.insertar(p);
+                if (id != -1) {
+                    p.setId(id);
+                    tabla.getItems().add(p);
+                    masterData.add(p);
+                    confirmacion("Persona añadida correctamente");
+                    modal.close();
+                } else {
+                    alerta("Error añadiendo persona");
+                }
             }
         }
     }
@@ -202,16 +217,24 @@ public class PersonasController {
     void modificar(Persona p) {
         boolean resultado = validarDatos();
         if (resultado) {
-            Persona p2 = new Persona(txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtEdad.getText()));
+            Persona p2 = new Persona();
+            p2.setNombre(txtNombre.getText());
+            p2.setApellidos(txtApellidos.getText());
+            p2.setEdad(Integer.parseInt(txtEdad.getText()));
             if (masterData.contains(p2)) {
                 alerta("Esa persona ya existe");
             } else {
                 p.setNombre(txtNombre.getText());
                 p.setApellidos(txtApellidos.getText());
                 p.setEdad(Integer.parseInt(txtEdad.getText()));
-                tabla.refresh();
-                confirmacion("Actualizada persona correctamente");
-                modal.close();
+                boolean modificacion = DaoPersona.modificar(p2,p);
+                if (modificacion) {
+                    tabla.refresh();
+                    confirmacion("Actualizada persona correctamente");
+                    modal.close();
+                } else {
+                    alerta("Error modificando persona");
+                }
             }
         }
     }
@@ -232,12 +255,17 @@ public class PersonasController {
             Integer[] indices = new Integer[lst.size()];
             indices = lst.toArray(indices);
             Arrays.sort(indices);
-            for (int i = indices.length - 1; i >= 0; i--) {
-                tsm.clearSelection(indices[i].intValue());
-                tabla.getItems().remove(indices[i].intValue());
+            boolean eliminar = DaoPersona.eliminar(p);
+            if (eliminar) {
+                for (int i = indices.length - 1; i >= 0; i--) {
+                    tsm.clearSelection(indices[i].intValue());
+                    tabla.getItems().remove(indices[i].intValue());
+                }
+                masterData.remove(p);
+                confirmacion("Personas eliminadas correctamente");
+            } else {
+                alerta("Error eliminando persona");
             }
-            masterData.remove(p);
-            confirmacion("Personas eliminadas correctamente");
         }
     }
 
