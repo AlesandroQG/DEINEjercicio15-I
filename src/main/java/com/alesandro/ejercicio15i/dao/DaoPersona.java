@@ -1,7 +1,7 @@
-package com.alesandro.ejercicio15h.dao;
+package com.alesandro.ejercicio15i.dao;
 
-import com.alesandro.ejercicio15h.db.DBConnect;
-import com.alesandro.ejercicio15h.model.Persona;
+import com.alesandro.ejercicio15i.db.DBConnect;
+import com.alesandro.ejercicio15i.model.Persona;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

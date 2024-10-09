@@ -6,14 +6,25 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 
-<FlowPane prefHeight="400.0" prefWidth="800.0" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alesandro.ejercicio15h.controller.PersonasController">
+<FlowPane prefHeight="400.0" prefWidth="800.0" stylesheets="@../css/style.css" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alesandro.ejercicio15i.controller.PersonasController">
    <children>
-      <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="300.0">
+      <FlowPane alignment="CENTER" hgap="50.0" prefHeight="100.0" prefWidth="450.0">
          <children>
-            <Label text="Filtrar por nombre:" />
-            <TextField fx:id="filtroNombre" />
+            <ImageView fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/contactos.jpeg" />
+               </image>
+            </ImageView>
+            <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="300.0">
+               <children>
+                  <Label text="Filtrar por nombre:" />
+                  <TextField fx:id="filtroNombre" />
+               </children>
+            </FlowPane>
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" vgap="10.0">

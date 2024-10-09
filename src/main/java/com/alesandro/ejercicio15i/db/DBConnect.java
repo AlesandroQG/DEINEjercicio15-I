@@ -1,4 +1,4 @@
-package com.alesandro.ejercicio15h.db;
+package com.alesandro.ejercicio15i.db;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

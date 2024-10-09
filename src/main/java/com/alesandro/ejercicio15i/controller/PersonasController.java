@@ -1,4 +1,4 @@
-package com.alesandro.ejercicio15h.controller;
+package com.alesandro.ejercicio15i.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import static javafx.scene.control.TableView.TableViewSelectionModel;
 
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.alesandro.ejercicio15h.model.Persona;
+import com.alesandro.ejercicio15i.model.Persona;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 
-import com.alesandro.ejercicio15h.dao.DaoPersona;
+import com.alesandro.ejercicio15i.dao.DaoPersona;
 
 /**
  * Clase que controla los eventos de la ventana

@@ -1,0 +1,11 @@
+#tabla {
+    -fx-background-color: lightgreen;
+}
+
+.button {
+    -fx-background-color: lightgreen;
+}
+
+.button:hover {
+    -fx-background-color: green;
+}

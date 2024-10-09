@@ -1,4 +1,4 @@
-package com.alesandro.ejercicio15h;
+package com.alesandro.ejercicio15i;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,7 @@ public class PersonasApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PersonasApplication.class.getResource("/fxml/Personas.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         stage.setTitle("Personas");
         stage.getIcons().add(new Image(PersonasApplication.class.getResourceAsStream("/images/PersonaApp.png")));
         stage.setResizable(false);
