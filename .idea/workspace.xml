@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96b619f7-74c5-457a-acd4-89439082e31f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/contactos.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15h/PersonasApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15i/PersonasApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15h/controller/PersonasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15i/controller/PersonasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15h/dao/DaoPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15i/dao/DaoPersona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15h/db/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15i/db/DBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15h/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alesandro/ejercicio15i/model/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Personas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Personas.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="96b619f7-74c5-457a-acd4-89439082e31f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
