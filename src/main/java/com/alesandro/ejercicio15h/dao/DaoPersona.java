@@ -22,7 +22,7 @@ public class DaoPersona {
         try{
             conexion = new DBConnect();
 
-            String consulta = "SELECT id,nombre,apellidos,edad FROM PERSONA";
+            String consulta = "SELECT id,nombre,apellidos,edad FROM Persona";
             PreparedStatement pstmt = conexion.getConnection().prepareStatement(consulta);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -65,7 +65,7 @@ public class DaoPersona {
             conexion = new DBConnect();
             // UPDATE `DNI`.`PAISES` SET `pais` = 'BulgariaK' WHERE (`pais` = 'Bulgaria');
 
-            String consulta = "UPDATE PERSONA SET nombre = ?,apellidos = ?,edad = ? WHERE id = ?";
+            String consulta = "UPDATE Persona SET nombre = ?,apellidos = ?,edad = ? WHERE id = ?";
             pstmt = conexion.getConnection().prepareStatement(consulta);
 
             pstmt.setString(1, pNueva.getNombre());
@@ -106,8 +106,8 @@ public class DaoPersona {
             conexion = new DBConnect();
             // INSERT INTO `DNI`.`dni` (`dni`) VALUES ('el nuevo');
 
-            String consulta = "INSERT INTO PERSON (nombre,apellidos,edad) VALUES (?,?,?) ";
-            pstmt = conexion.getConnection().prepareStatement(consulta);
+            String consulta = "INSERT INTO Persona (nombre,apellidos,edad) VALUES (?,?,?) ";
+            pstmt = conexion.getConnection().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, persona.getNombre());
             pstmt.setString(2, persona.getApellidos());
@@ -115,17 +115,20 @@ public class DaoPersona {
 
             int filasAfectadas = pstmt.executeUpdate();
             //if (pstmt != null)
-            pstmt.close();
+
             //if (conexion != null)
-            conexion.closeConexion();
             System.out.println("Nueva entrada en  persona");
             if (filasAfectadas > 0) {
                 ResultSet rs = pstmt.getGeneratedKeys();
                 if (rs.next()) {
                     int id = rs.getInt(1);
+                    pstmt.close();
+                    conexion.closeConexion();
                     return id;
                 }
             }
+            pstmt.close();
+            conexion.closeConexion();
             return -1;
         } catch (SQLException e) {
                /* Alertas alertaError = new Alertas();
@@ -151,7 +154,7 @@ public class DaoPersona {
         try {
             conexion = new DBConnect();
             //DELETE FROM `DNI`.`dni` WHERE (`dni` = 'asdasd');
-            String consulta = "DELETE FROM PERSONA WHERE (id = ?)";
+            String consulta = "DELETE FROM Persona WHERE (id = ?)";
             pstmt = conexion.getConnection().prepareStatement(consulta);
             pstmt.setInt(1, personaAEliminar.getId());
             int filasAfectadas = pstmt.executeUpdate();

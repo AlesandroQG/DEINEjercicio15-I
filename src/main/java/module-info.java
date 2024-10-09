@@ -9,6 +9,7 @@ module com.alesandro.ejercicio15h {
     opens com.alesandro.ejercicio15h to javafx.fxml;
     exports com.alesandro.ejercicio15h;
     exports com.alesandro.ejercicio15h.model;
+    exports com.alesandro.ejercicio15h.dao;
     exports com.alesandro.ejercicio15h.controller;
     opens com.alesandro.ejercicio15h.controller to javafx.fxml;
     exports com.alesandro.ejercicio15h.db;

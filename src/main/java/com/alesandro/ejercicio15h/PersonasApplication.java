@@ -1,6 +1,5 @@
 package com.alesandro.ejercicio15h;
 
-import com.alesandro.ejercicio15h.db.DBConnect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,8 +37,7 @@ public class PersonasApplication extends Application {
      *
      * @param args parámetros por consola
      */
-    public static void main(String[] args) throws Exception {
-        DBConnect connection = new DBConnect();
-        //Application.launch();
+    public static void main(String[] args) {
+        Application.launch();
     }
 }

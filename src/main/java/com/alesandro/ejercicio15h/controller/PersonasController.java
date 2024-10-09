@@ -181,6 +181,7 @@ public class PersonasController {
                     p.setId(id);
                     tabla.getItems().add(p);
                     masterData.add(p);
+                    tabla.refresh();
                     confirmacion("Persona añadida correctamente");
                     modal.close();
                 } else {
@@ -218,6 +219,7 @@ public class PersonasController {
         boolean resultado = validarDatos();
         if (resultado) {
             Persona p2 = new Persona();
+            p2.setId(p.getId());
             p2.setNombre(txtNombre.getText());
             p2.setApellidos(txtApellidos.getText());
             p2.setEdad(Integer.parseInt(txtEdad.getText()));
