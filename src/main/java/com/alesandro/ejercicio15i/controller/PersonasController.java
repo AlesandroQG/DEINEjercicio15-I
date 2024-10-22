@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import com.alesandro.ejercicio15i.dao.DaoPersona;
 
@@ -50,6 +51,9 @@ public class PersonasController {
 
     @FXML // fx:id="filtroNombre"
     private TextField filtroNombre; // Value injected by FXMLLoader
+
+    @FXML
+    private ResourceBundle resources; // ResourceBundle injected automatically by FXML loader
 
     private Stage modal;
 
@@ -125,21 +129,21 @@ public class PersonasController {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.getColumnConstraints().addAll(new ColumnConstraints(75), new ColumnConstraints(200));
-        Label lblNombre = new Label("Nombre");
+        Label lblNombre = new Label(resources.getString("label.nombre"));
         txtNombre = new TextField();
         gridPane.add(lblNombre, 0, 0, 1, 1);
         gridPane.add(txtNombre, 1, 0, 1, 1);
-        Label lblApellidos = new Label("Apellidos");
+        Label lblApellidos = new Label(resources.getString("label.apellidos"));
         txtApellidos = new TextField();
         gridPane.add(lblApellidos, 0, 1, 1, 1);
         gridPane.add(txtApellidos, 1, 1, 1, 1);
-        Label lblEdad = new Label("Edad");
+        Label lblEdad = new Label(resources.getString("label.edad"));
         txtEdad = new TextField();
         txtEdad.setMaxWidth(75);
         gridPane.add(lblEdad, 0, 2, 1, 1);
         gridPane.add(txtEdad, 1, 2, 1, 1);
-        btnGuardar = new Button("Guardar");
-        btnCancelar = new Button("Cancelar");
+        btnGuardar = new Button(resources.getString("btn.guardar"));
+        btnCancelar = new Button(resources.getString("btn.cancelar"));
         btnCancelar.setOnAction(event -> cancelar());
         FlowPane flowPane = new FlowPane(btnGuardar, btnCancelar);
         flowPane.setAlignment(Pos.CENTER);

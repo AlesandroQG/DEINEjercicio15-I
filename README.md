@@ -18,4 +18,5 @@ La estructura del proyecto es la siguiente:
       - `css`: Estilos de la aplicación
       - `fxml`:
         - `Personas.fxml`: Ventana principal de la aplicación
+      - `idiomas`: Carpeta conteniendo el texto de cada idioma
       - `images`: Imágenes de la aplicación

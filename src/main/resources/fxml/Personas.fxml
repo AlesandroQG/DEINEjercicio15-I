@@ -21,7 +21,7 @@
             </ImageView>
             <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="300.0">
                <children>
-                  <Label text="Filtrar por nombre:" />
+                  <Label text="%label.filtro" />
                   <TextField fx:id="filtroNombre" />
                </children>
             </FlowPane>
@@ -31,9 +31,9 @@
          <children>
             <TableView fx:id="tabla" prefHeight="300.0" prefWidth="780.0">
               <columns>
-                <TableColumn fx:id="colNombre" minWidth="-1.0" prefWidth="150.0" text="NOMBRE" />
-                <TableColumn fx:id="colApellidos" prefWidth="150.0" text="APELLIDOS" />
-                  <TableColumn fx:id="colEdad" text="EDAD" />
+                <TableColumn fx:id="colNombre" minWidth="-1.0" prefWidth="150.0" text="%tabla.nombre" />
+                <TableColumn fx:id="colApellidos" prefWidth="150.0" text="%tabla.apellidos" />
+                  <TableColumn fx:id="colEdad" text="%tabla.edad" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -41,9 +41,9 @@
             </TableView>
             <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefWidth="400.0" prefWrapLength="500.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#agregarPersona" text="Agregar Persona" />
-                  <Button mnemonicParsing="false" onAction="#modificarPersona" text="Modificar Persona" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#eliminarPersona" text="Eliminar Persona" />
+                  <Button mnemonicParsing="false" onAction="#agregarPersona" text="%btn.agregar" />
+                  <Button mnemonicParsing="false" onAction="#modificarPersona" text="%btn.modificar" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#eliminarPersona" text="%btn.eliminar" />
                </children>
             </FlowPane>
          </children>

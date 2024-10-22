@@ -35,7 +35,7 @@ public class DaoPersona {
 
             }
             rs.close();
-            conexion.closeConexion();
+            conexion.closeConnection();
         }catch (
                 SQLException e) {
             // O lo trato aquí arriesgandome a qu fxml no este
@@ -79,7 +79,7 @@ public class DaoPersona {
             //if (pstmt != null)
             pstmt.close();
             //if (conexion != null)
-            conexion.closeConexion();
+            conexion.closeConnection();
             return filasAfectadas > 0;
         } catch (SQLException e) {
                /* Alertas alertaError = new Alertas();
@@ -123,12 +123,12 @@ public class DaoPersona {
                 if (rs.next()) {
                     int id = rs.getInt(1);
                     pstmt.close();
-                    conexion.closeConexion();
+                    conexion.closeConnection();
                     return id;
                 }
             }
             pstmt.close();
-            conexion.closeConexion();
+            conexion.closeConnection();
             return -1;
         } catch (SQLException e) {
                /* Alertas alertaError = new Alertas();
@@ -159,7 +159,7 @@ public class DaoPersona {
             pstmt.setInt(1, personaAEliminar.getId());
             int filasAfectadas = pstmt.executeUpdate();
             pstmt.close();
-            conexion.closeConexion();
+            conexion.closeConnection();
             System.out.println("Eliminado con éxito");
             return filasAfectadas > 0;
 
